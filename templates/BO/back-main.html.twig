@@ -3,7 +3,11 @@
 
 {% block title %} {{ parent() }} -Home{% endblock %}
 
-
+ {% block leftside %}
+                  
+    {% include "/BO/common/left-side-navbar.html.twig" %}
+                  
+{% endblock %}
 
 {% block body %}
 

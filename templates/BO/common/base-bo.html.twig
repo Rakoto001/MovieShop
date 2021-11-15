@@ -109,7 +109,11 @@
           <div class="pcoded-main-container">
               <div class="pcoded-wrapper">
                   {#  #}
-                  {% include "/BO/common/left-side-navbar.html.twig" %}
+                  {% block leftside %}
+                  
+                  {# {% include "/BO/common/left-side-navbar.html.twig" %} #}
+                  
+                  {% endblock %}
 
                   <div class="pcoded-content">
                       <!-- Page-header start -->
