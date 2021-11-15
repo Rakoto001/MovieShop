@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller\BO;
+namespace App\Controller\back;
 
 use App\Entity\Article;
 use JMS\Serializer\SerializerInterface;
