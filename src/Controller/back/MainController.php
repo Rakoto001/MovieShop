@@ -14,7 +14,7 @@ class MainController extends AbstractController
     {
         // dump('here');
 
-        return $this->render('BO/common/base-bo.html.twig');
+        return $this->render('BO/back-main.html.twig');
     }
 
 }
