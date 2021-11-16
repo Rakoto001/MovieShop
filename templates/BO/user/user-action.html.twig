@@ -1,0 +1,105 @@
+{% extends "/BO/common/base-bo.html.twig" %}
+
+{% block title %}
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheet %}
+	{{ parent() }}
+{% endblock %}
+
+{% block leftside %}
+
+	{% include "/BO/common/left-side-navbar.html.twig" %}
+
+{% endblock %}
+
+{% block body %}
+
+
+
+	<div class="row">
+		<div class="col-md-2"></div>
+
+		<div class="col-md-8">
+			<div class="card">
+				<div class="card-header">
+					<h5>Utilisateur - Création</h5>
+					<!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+				</div>
+				<div class="card-block">
+
+                        {{ form_start(userForm,{'method':'POST', 'type':'submit', 'attr':{'class':'form-horizontal form-bordered', 'id':'form-user', 'enctype':'multipart/form-data'}         }) }}
+						<div class="form-group form-default form-static-label">
+							{# <input type="text" name="footer-email" class="form-control" placeholder="Enter User Name" required=""> #}
+                             {{form_widget(userForm.username,{'attr':{
+                                                             'class':"form-control",
+                                                              'placeholder':"Entrer votre nom"
+                                                              }
+
+                                     })
+                             }}
+							<span class="form-bar"></span>
+							<label class="float-label">Nom *</label>
+						</div>
+						<div class="form-group form-default form-static-label">
+							 {{form_widget(userForm.email,{'attr':{
+                                                             'class':"form-control",
+                                                              'placeholder':"Entrer votre adresse email"
+                                                              }
+
+                                     })
+                             }}
+							<span class="form-bar"></span>
+							<label class="float-label">Email *</label>
+						</div>
+						<div class="form-group form-default form-static-label">
+							 {{form_widget(userForm.roles,{'attr':{
+                                                             'class':"form-control",
+                                                              'placeholder':"Entrer votre adresse email"
+                                                              }
+
+                                     })
+                             }}
+							<span class="form-bar"></span>
+							<label class="float-label">Role</label>
+						</div>
+
+                        <div class="form-group form-default form-static-label">
+							{# <input type="text" name="footer-email" class="form-control" placeholder="Enter User Name" required=""> #}
+                             {{form_widget(userForm.status,{'attr':{
+                                                             'class':"form-control",
+                                                              'placeholder':""
+                                                              }
+
+                                     })
+                             }}
+							<span class="form-bar"></span>
+							<label class="float-label">Statut</label>
+						</div>
+
+                        <div class="form-group form-default form-static-label">
+							                         <input id="dropzone-file" type="file" name="userAvatar" accept="image/*" class="dropzone-file {#d-none#}" style="display: block"/>
+
+							<span class="form-bar"></span>
+							<label class="float-label">Avatar</label>
+						</div>
+
+                        <button class="btn waves-effect waves-light btn-info btn-skew">Enregistrer</button>
+						
+                        {{ form_rest(userForm) }}
+					
+                    {{ form_end(userForm) }}
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2"></div>
+
+{% endblock %}
+
+
+{% block script %}
+	{{ parent() }}
+
+{% endblock %}

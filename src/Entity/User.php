@@ -39,6 +39,16 @@ class User implements UserInterface
      */
     private $username;
 
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $userAvatar;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $status;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,7 +98,7 @@ class User implements UserInterface
     /**
      * @see UserInterface
      */
-    public function getPassword(): string
+    public function getPassword()
     {
         return $this->password;
     }
@@ -123,6 +133,30 @@ class User implements UserInterface
     public function setUsername(?string $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getUserAvatar(): ?string
+    {
+        return $this->userAvatar;
+    }
+
+    public function setUserAvatar(?string $userAvatar): self
+    {
+        $this->userAvatar = $userAvatar;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?int $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
