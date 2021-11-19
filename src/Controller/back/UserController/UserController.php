@@ -11,12 +11,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * @Route("/user")
+ * @Route("admin/user")
  */
 class UserController extends AbstractController
 {
     private $encode;
     private $userService;
+
+    const USER_PAGE    = 'Utilisateur';
+    const USER_ACTION  = 'Liste';
+    const USER_EDITION = 'Mofdification';
+
     public function __construct(UserPasswordEncoderInterface $_encode, UserService $_userService) {
         $this->encode = $_encode;
         $this->userService = $_userService;
@@ -38,20 +43,15 @@ class UserController extends AbstractController
         $userForm->handleRequest($request);
 
         if ($userForm->isSubmitted() && $userForm->isValid()) {
-            // dump($user);
-            // dump();
+           
             $allParams = $request->request->all();
             $allFiles = $request->files->all();
             $allParams['userAvatar'] = $allFiles;
 
             unset($allParams['user']['_token']);
-
             $this->userService->checkUser($allParams);
 
-
-
-            die();
-
+            $this->addFlash('success', 'Utilisateur ajouté');
 
         }
 
@@ -59,5 +59,49 @@ class UserController extends AbstractController
                                                                     'userForm' => $userForm->createView(),
         ]);
     }
+
+    /**
+     * @Route("/list", name="admin_user_list")
+    */
+    public function userList()
+    {
+        // $users = $this->userService->getRepository()->findAll();
+
+        return $this->render('/BO/user/user-list.html.twig', [
+
+                                                                'page'   => self::USER_PAGE,
+                                                                'action' => self::USER_ACTION,
+                                                             ]);
+
+    }
+
+    /**
+     * @Route("/edit/{id}", name="admin_user_edit")
+     */
+    public function userEdit(int $id, Request $request)
+    {
+        $user = $this->userService->getRepository()->findById($id);
+
+        if($user){
+
+            $user = $user[0];
+
+        }
+
+
+        $userForm = $this->createForm(UserType::class, $user);
+        $userForm->handleRequest($request);
+        $userAvatar = $user->getUserAvatar();
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
+
+        }
+
+
+        return $this->render('BO/user/user-action.html.twig', [
+                                                                  'userForm' => $userForm->createView(),
+                                                                  'userAvatar' => $userAvatar,
+        ]);
+    }
+
 
 }

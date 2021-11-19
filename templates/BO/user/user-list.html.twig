@@ -1,0 +1,75 @@
+{% extends "/BO/common/base-bo.html.twig" %}
+
+{% block title %}
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheet %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('bo/assets/mondatatable/dataTables.bootstrap4.min.css') }}">
+	<link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
+{% endblock %}
+
+{% block leftside %}
+
+	{% include "/BO/common/left-side-navbar.html.twig" %}
+
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="row">
+		<div class="col-md-2"></div>
+
+		<div class="col-md-8">
+			<div class="card">
+				<div class="card-header">
+					<h5>{{ page }}
+						-
+						{{ action }}</h5>
+					<!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+				</div>
+				<div class="card-block">
+
+					<section class="panel">
+
+						<div class="panel-body">
+							<table class="table table-bordered table-striped mb-none" 
+								   id="user-list-datatable" 
+								   page="user"
+								    user="" 
+									ajax-url={{ path("user_datatable_list")}}>
+								<thead>
+									<tr>
+										<th>Avatar</th>
+										<th>Nom</th>
+										<th>Email</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</section>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2"></div>
+
+{% endblock %}
+
+
+{% block script %}
+	{{ parent() }}
+
+	<script src="{{ asset('bo/assets/mondatatable/datatables.js') }}"></script>
+	<script src="{{ asset('bo/assets/mondatatable/dataTables.min.js') }}"></script>
+	<script src="{{ asset('bo/assets/mondatatable/dataTables.bootstrap4.min.js') }}"></script>
+	<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+	<script src="{{ asset('bo/assets/js/backOffice/user.js') }}"></script>
+
+{% endblock %}

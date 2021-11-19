@@ -77,6 +77,12 @@
 							<span class="form-bar"></span>
 							<label class="float-label">Statut</label>
 						</div>
+						
+						{% if userAvatar %}
+{{ 
+						 dump(userAvatar)
+						}}
+						{% endif %}
 
                         <div class="form-group form-default form-static-label">
 							                         <input id="dropzone-file" type="file" name="userAvatar" accept="image/*" class="dropzone-file {#d-none#}" style="display: block"/>

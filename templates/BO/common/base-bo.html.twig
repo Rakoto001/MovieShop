@@ -114,7 +114,11 @@
                   {# {% include "/BO/common/left-side-navbar.html.twig" %} #}
                   
                   {% endblock %}
-
+ {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+ {% endfor %}
                   <div class="pcoded-content">
                       <!-- Page-header start -->
                       <div class="page-header">
